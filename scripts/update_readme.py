@@ -34,6 +34,12 @@ PLATFORM_ORDER = ["PRG", "SWEA", "BOJ"]
 
 LEVEL_LINE_RE = re.compile(r"^-\s*난이도\s*:\s*(.+)$")
 
+# 폴더명 형식이 여러 버전 섞여 있어도 문제번호만 뽑아낸다:
+#   "1545"                  -> 1545
+#   "Q1545"                 -> 1545
+#   "Q1545-print-backward"  -> 1545
+FOLDER_NUMBER_RE = re.compile(r"^Q?(\d+)(?:[-_].*)?$")
+
 COMMIT_RE = re.compile(
     r"^\[(PRG|SWEA|BOJ)\]\s+Q(\d+)(?:_s\d+:[^\s(]+)?\s+\(([^)]+)\)(?:\s+\[(\w+)\])?"
 )
@@ -94,9 +100,10 @@ def scan_problem_folders():
             continue
         for readme_path in base.rglob("README.md"):
             problem_dir = readme_path.parent
-            number = problem_dir.name
-            if not number.isdigit():
+            m = FOLDER_NUMBER_RE.match(problem_dir.name)
+            if not m:
                 continue
+            number = m.group(1)
             name, level = extract_title_and_level(readme_path)
             problems.append({
                 "platform": abbr,
