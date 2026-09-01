@@ -33,6 +33,7 @@ ABBR_TO_KOR = {
 PLATFORM_ORDER = ["PRG", "SWEA", "BOJ"]
 
 LEVEL_LINE_RE = re.compile(r"^-\s*난이도\s*:\s*(.+)$")
+DATE_VALUE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 # 폴더명 형식이 여러 버전 섞여 있어도 문제번호만 뽑아낸다:
 #   "1545"                  -> 1545
@@ -69,21 +70,43 @@ def extract_title_and_level(readme_path: Path):
     문제 README.md에서
       '# 문제번호 문제이름'  -> 이름
       '- 난이도: ...'        -> 난이도 표기 (사이트 표기 그대로, 코드에서 매핑하지 않음)
-    을 읽는다. 난이도 줄이 없으면 '-'.
+      '## 풀이 이력' 표의 '날짜' 컬럼 -> 실제 풀이일 (커밋 날짜가 아니라 이 값을 최종 소스로 사용)
+    을 읽는다.
     """
     name = "(제목 없음)"
     level = "-"
+    solved_dates = []
+    date_col = None  # '풀이 이력' 표에서 '날짜' 컬럼의 인덱스. 찾기 전까지 None
+
     with open(readme_path, encoding="utf-8") as f:
-        for line in f:
-            stripped = line.strip()
+        for raw_line in f:
+            stripped = raw_line.strip()
+
             if stripped.startswith("# ") and name == "(제목 없음)":
                 content = stripped[2:].strip()
                 tokens = content.split(maxsplit=1)
                 name = tokens[1] if len(tokens) == 2 and tokens[0].isdigit() else content
+                continue
+
             m = LEVEL_LINE_RE.match(stripped)
             if m:
                 level = m.group(1).strip()
-    return name, level
+                continue
+
+            # '풀이 이력' 표 파싱: '| ... | 날짜 | ... |' 형태 줄만 대상으로 함
+            if stripped.startswith("|") and stripped.endswith("|"):
+                cells = [c.strip() for c in stripped.strip("|").split("|")]
+                if date_col is None:
+                    if "날짜" in cells:
+                        date_col = cells.index("날짜")
+                    continue  # 헤더 행 자체는 데이터로 취급하지 않음
+                if date_col < len(cells):
+                    value = cells[date_col]
+                    if DATE_VALUE_RE.match(value):
+                        solved_dates.append(value)
+
+    last_solved_date = max(solved_dates) if solved_dates else None
+    return name, level, last_solved_date
 
 
 def scan_problem_folders():
@@ -104,13 +127,14 @@ def scan_problem_folders():
             if not m:
                 continue
             number = m.group(1)
-            name, level = extract_title_and_level(readme_path)
+            name, level, solved_date = extract_title_and_level(readme_path)
             problems.append({
                 "platform": abbr,
                 "number": number,
                 "level": level,
                 "path": problem_dir.relative_to(ROOT).as_posix(),
                 "name": name,
+                "solved_date": solved_date,  # README '풀이 이력' 표에서 읽은 실제 풀이일 (None 가능)
             })
     return problems
 
@@ -131,14 +155,15 @@ def build_stats(commit_entries):
     return stats
 
 
-def render_progress_table(problems, stats):
+def render_progress_table(problems):
+    """'마지막 업데이트'는 커밋 날짜가 아니라 각 문제 README에 적힌 실제 풀이일(solved_date) 기준"""
     per_platform = defaultdict(lambda: {"count": 0, "last": None})
     for p in problems:
         info = per_platform[p["platform"]]
         info["count"] += 1
-        last = stats.get((p["platform"], p["number"]), {}).get("last_date")
-        if last and (info["last"] is None or last > info["last"]):
-            info["last"] = last
+        d = p["solved_date"]
+        if d and (info["last"] is None or d > info["last"]):
+            info["last"] = d
 
     lines = ["| 플랫폼 | 문제 수 | 마지막 업데이트 |", "|---|---|---|"]
     for abbr in PLATFORM_ORDER:
@@ -152,23 +177,29 @@ def render_progress_table(problems, stats):
 
 
 def render_problem_list(problems, stats):
+    """
+    정렬 기준: README '풀이 이력' 표에 적힌 실제 풀이일(solved_date) — 커밋 시각이 아님.
+    No. 컬럼: 최신 문제가 가장 큰 번호(총 문제 수)를 갖고, 가장 오래된 문제가 1이 되도록
+              역순으로 매긴다. (커밋 타임스탬프는 같은 날짜끼리의 2차 정렬 기준으로만 사용)
+    """
     enriched = []
     for p in problems:
-        s = stats.get((p["platform"], p["number"]), {"total": 0, "ac": 0, "last_ts": None, "last_date": None})
+        s = stats.get((p["platform"], p["number"]), {"total": 0, "ac": 0, "last_ts": None})
         enriched.append((p, s))
-    # 최근 커밋 타임스탬프 기준 내림차순 (같은 날짜라도 실제 커밋 순서대로 정렬됨)
-    enriched.sort(key=lambda x: x[1]["last_ts"] or "", reverse=True)
+    enriched.sort(key=lambda x: (x[0]["solved_date"] or "", x[1]["last_ts"] or ""), reverse=True)
 
+    total = len(enriched)
     lines = [
         "| No. | 번호 | 문제 | 플랫폼 | 난이도 | 풀이 수 (AC/전체) | 최근 풀이일 |",
         "|---|---|---|---|---|---|---|",
     ]
-    for idx, (p, s) in enumerate(enriched, start=1):
+    for i, (p, s) in enumerate(enriched):
+        no = total - i  # 역순: 맨 위(최신)가 total, 맨 아래(가장 오래됨)가 1
         link = f"[{p['name']}](./{p['path']})"
         ac_total = f"{s['ac']}/{s['total']}" if s["total"] else "-"
         lines.append(
-            f"| {idx} | {p['number']} | {link} | {ABBR_TO_KOR[p['platform']]} | "
-            f"{p['level']} | {ac_total} | {s['last_date'] or '-'} |"
+            f"| {no} | {p['number']} | {link} | {ABBR_TO_KOR[p['platform']]} | "
+            f"{p['level']} | {ac_total} | {p['solved_date'] or '-'} |"
         )
     if len(lines) == 2:
         lines.append("| | | (등록된 문제 없음) | | | | |")
@@ -188,7 +219,7 @@ def main():
     problems = scan_problem_folders()
     stats = build_stats(commit_entries)
 
-    progress_table = render_progress_table(problems, stats)
+    progress_table = render_progress_table(problems)
     problem_table = render_problem_list(problems, stats)
 
     content = README.read_text(encoding="utf-8")
