@@ -89,7 +89,7 @@ algorithm-study/
 <!-- PROGRESS:START -->
 | 플랫폼 | 문제 수 | 마지막 업데이트 |
 |---|---|---|
-| SWEA | 21 | 2026-08-28 |
+| SWEA | 21 | 2026-08-07 |
 <!-- PROGRESS:END -->
 
 ## 📌 문제 목록
@@ -99,26 +99,26 @@ algorithm-study/
 <!-- PROBLEM_LIST:START -->
 | No. | 번호 | 문제 | 플랫폼 | 난이도 | 풀이 수 (AC/전체) | 최근 풀이일 |
 |---|---|---|---|---|---|---|
-| 1 | 1986 | [Q1986 지그재그 숫자](./swea/D2/Q1986-zigzag-number) | SWEA | D2 | 1/1 | 2026-08-28 |
-| 2 | 1945 | [Q1945 간단한 소인수분해](./swea/D2/Q1945-simple-prime-factorization) | SWEA | D2 | 1/1 | 2026-08-28 |
-| 3 | 1933 | [Q1933 간단한 N의 약수](./swea/D1/Q1933-simple-N-divisor) | SWEA | D1 | 1/1 | 2026-08-28 |
-| 4 | 1545 | [Q1545 거꾸로 출력해 보아요](./swea/D1/Q1545-print-backward) | SWEA | D1 | 1/1 | 2026-08-28 |
-| 5 | 2019 | [Q2019 더블더블](./swea/D1/Q2019-double-double) | SWEA | D1 | 1/1 | 2026-08-28 |
-| 6 | 1936 | [Q1936 1대1 가위바위보](./swea/D1/Q1936-one-on-one-rock-scissors-paper) | SWEA | D1 | 1/1 | 2026-08-28 |
-| 7 | 1938 | [Q1938 아주 간단한 계산기](./swea/D1/Q1938-simple-calculator) | SWEA | D1 | 1/1 | 2026-08-28 |
-| 8 | 2025 | [Q2025 N줄덧셈](./swea/D1/Q2025-add-to-N) | SWEA | D1 | 1/1 | 2026-08-28 |
-| 9 | 2027 | [Q2027 대각선 출력하기](./swea/D1/Q2027-print-diagonal) | SWEA | D1 | 1/1 | 2026-08-28 |
-| 10 | 2029 | [Q2029 몫과 나머지 출력하기](./swea/D1/Q2029-quotient-n-remainder) | SWEA | D1 | 1/1 | 2026-08-28 |
-| 11 | 2043 | [Q2043 서랍의 비밀번호](./swea/D1/Q2043-find-password) | SWEA | D1 | 1/1 | 2026-08-28 |
-| 12 | 2063 | [Q2063 중간값 찾기](./swea/D1/Q2063-find-median) | SWEA | D1 | 1/1 | 2026-08-18 |
-| 13 | 2047 | [Q2047 신문 헤드라인](./swea/D1/Q2047-news-headline) | SWEA | D1 | 1/1 | 2026-08-18 |
-| 14 | 2050 | [Q2050 알파벳을 숫자로 변환](./swea/D1/Q2050-apb-to-num) | SWEA | D1 | 1/1 | 2026-08-18 |
-| 15 | 2056 | [Q2056 연월일 달력](./swea/D1/Q2056-year-month-day-calendar) | SWEA | D1 | 1/1 | 2026-08-18 |
-| 16 | 2046 | [Q2046 스탬프 찍기](./swea/D1/Q2046-print-stamp) | SWEA | D1 | 2/2 | 2026-08-18 |
-| 17 | 2058 | [Q2058 자릿수 더하기](./swea/D1/Q2058-sum-of-digit) | SWEA | D1 | 2/2 | 2026-08-18 |
-| 18 | 2068 | [Q2068 최대수 구하기](./swea/D1/Q2068-calculate-the-max) | SWEA | D1 | 1/1 | 2026-08-18 |
-| 19 | 2070 | [Q2070 큰 놈, 작은 놈, 같은 놈](./swea/D1/Q2070-big-small-same-thing) | SWEA | D1 | 1/1 | 2026-08-18 |
-| 20 | 2071 | [Q2071 평균값 구하기](./swea/D1/Q2071-calculate-the-mean) | SWEA | D1 | 1/1 | 2026-08-18 |
-| 21 | 2072 | [Q2072 홀수만 더하기](./swea/D1/Q2072-add-odd-only) | SWEA | D1 | 1/1 | 2026-08-18 |
+| 21 | 1986 | [Q1986 지그재그 숫자](./swea/D2/Q1986-zigzag-number) | SWEA | D2 | 1/1 | 2026-08-07 |
+| 20 | 1945 | [Q1945 간단한 소인수분해](./swea/D2/Q1945-simple-prime-factorization) | SWEA | D2 | 1/1 | 2026-08-07 |
+| 19 | 1933 | [Q1933 간단한 N의 약수](./swea/D1/Q1933-simple-N-divisor) | SWEA | D1 | 1/1 | 2026-08-06 |
+| 18 | 1545 | [Q1545 거꾸로 출력해 보아요](./swea/D1/Q1545-print-backward) | SWEA | D1 | 1/1 | 2026-08-06 |
+| 17 | 2019 | [Q2019 더블더블](./swea/D1/Q2019-double-double) | SWEA | D1 | 1/1 | 2026-08-06 |
+| 16 | 1936 | [Q1936 1대1 가위바위보](./swea/D1/Q1936-one-on-one-rock-scissors-paper) | SWEA | D1 | 1/1 | 2026-08-06 |
+| 15 | 1938 | [Q1938 아주 간단한 계산기](./swea/D1/Q1938-simple-calculator) | SWEA | D1 | 1/1 | 2026-08-06 |
+| 14 | 2025 | [Q2025 N줄덧셈](./swea/D1/Q2025-add-to-N) | SWEA | D1 | 1/1 | 2026-08-06 |
+| 13 | 2027 | [Q2027 대각선 출력하기](./swea/D1/Q2027-print-diagonal) | SWEA | D1 | 1/1 | 2026-08-06 |
+| 12 | 2029 | [Q2029 몫과 나머지 출력하기](./swea/D1/Q2029-quotient-n-remainder) | SWEA | D1 | 1/1 | 2026-08-06 |
+| 11 | 2043 | [Q2043 서랍의 비밀번호](./swea/D1/Q2043-find-password) | SWEA | D1 | 1/1 | 2026-08-06 |
+| 10 | 2063 | [Q2063 중간값 찾기](./swea/D1/Q2063-find-median) | SWEA | D1 | 1/1 | 2026-08-06 |
+| 9 | 2047 | [Q2047 신문 헤드라인](./swea/D1/Q2047-news-headline) | SWEA | D1 | 1/1 | 2026-08-05 |
+| 8 | 2050 | [Q2050 알파벳을 숫자로 변환](./swea/D1/Q2050-apb-to-num) | SWEA | D1 | 1/1 | 2026-08-05 |
+| 7 | 2056 | [Q2056 연월일 달력](./swea/D1/Q2056-year-month-day-calendar) | SWEA | D1 | 1/1 | 2026-08-05 |
+| 6 | 2046 | [Q2046 스탬프 찍기](./swea/D1/Q2046-print-stamp) | SWEA | D1 | 2/2 | 2026-08-05 |
+| 5 | 2058 | [Q2058 자릿수 더하기](./swea/D1/Q2058-sum-of-digit) | SWEA | D1 | 2/2 | 2026-08-05 |
+| 4 | 2068 | [Q2068 최대수 구하기](./swea/D1/Q2068-calculate-the-max) | SWEA | D1 | 1/1 | 2026-08-04 |
+| 3 | 2070 | [Q2070 큰 놈, 작은 놈, 같은 놈](./swea/D1/Q2070-big-small-same-thing) | SWEA | D1 | 1/1 | 2026-07-30 |
+| 2 | 2071 | [Q2071 평균값 구하기](./swea/D1/Q2071-calculate-the-mean) | SWEA | D1 | 1/1 | 2026-07-30 |
+| 1 | 2072 | [Q2072 홀수만 더하기](./swea/D1/Q2072-add-odd-only) | SWEA | D1 | 1/1 | 2026-07-30 |
 <!-- PROBLEM_LIST:END -->
 
