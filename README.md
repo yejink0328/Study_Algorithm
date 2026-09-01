@@ -63,20 +63,29 @@
 ```
 algorithm-study/
 ├── README.md
+├── scripts/
+│   └── update_readme.py
+├── .github/
+│   └── workflows/
+│       └── update-readme.yml
 ├── programmers/
 │   ├── level1/
-│   │   └── Q12345-unfinished-racers/
+│   │   └── 12345/
 │   │       ├── README.md
-│   │       ├── Q12345.py
-│   │       ├── Q12345_s1.py
-│   │       └── Q12345_s2.py
+│   │       ├── Q12345_1.py
+│   │       ├── Q12345_2.py
+│   │       └── Q12345_3.py
 │   ├── level2/
 │   └── level3/
 ├── swea/
+│   ├── D1/
+│   │   └── 2072/
+│   │       ├── README.md
+│   │       └── Q2072_1.py
 │   └── D3/
-│       └── Q1954-snail-numbers/
+│       └── 1954/
 │           ├── README.md
-│           └── Q1954.py
+│           └── Q1954_1.py
 ├── baekjoon/
 └── _template/
     └── problem_README_template.md
