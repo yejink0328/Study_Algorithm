@@ -98,7 +98,7 @@ algorithm-study/
 <!-- PROGRESS:START -->
 | 플랫폼 | 문제 수 | 마지막 업데이트 |
 |---|---|---|
-| SWEA | 21 | 2026-08-07 |
+| SWEA | 22 | 2026-08-14 |
 <!-- PROGRESS:END -->
 
 ## 📌 문제 목록
@@ -108,6 +108,7 @@ algorithm-study/
 <!-- PROBLEM_LIST:START -->
 | No. | 번호 | 문제 | 플랫폼 | 난이도 | 풀이 수 (AC/전체) | 최근 풀이일 |
 |---|---|---|---|---|---|---|
+| 22 | 1204 | [Q1204 최빈수 구하기](./swea/D2/Q1204-find-mode) | SWEA | D2 | 1/1 | 2026-08-14 |
 | 21 | 1986 | [Q1986 지그재그 숫자](./swea/D2/Q1986-zigzag-number) | SWEA | D2 | 1/1 | 2026-08-07 |
 | 20 | 1945 | [Q1945 간단한 소인수분해](./swea/D2/Q1945-simple-prime-factorization) | SWEA | D2 | 1/1 | 2026-08-07 |
 | 19 | 1933 | [Q1933 간단한 N의 약수](./swea/D1/Q1933-simple-N-divisor) | SWEA | D1 | 1/1 | 2026-08-06 |
