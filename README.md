@@ -98,7 +98,7 @@ algorithm-study/
 <!-- PROGRESS:START -->
 | 플랫폼 | 문제 수 | 마지막 업데이트 |
 |---|---|---|
-| SWEA | 25 | 2026-08-14 |
+| SWEA | 26 | 2026-08-24 |
 <!-- PROGRESS:END -->
 
 ## 📌 문제 목록
@@ -108,6 +108,7 @@ algorithm-study/
 <!-- PROBLEM_LIST:START -->
 | No. | 번호 | 문제 | 플랫폼 | 난이도 | 풀이 수 (AC/전체) | 최근 풀이일 |
 |---|---|---|---|---|---|---|
+| 26 | 1946 | [Q1946 간단한 압축 풀기](./swea/D2/Q1946-simple-release-compression) | SWEA | D2 | 1/1 | 2026-08-24 |
 | 25 | 1940 | [Q1940 가랏! RC카!](./swea/D2/Q1940-go-RC-car) | SWEA | D2 | 2/2 | 2026-08-14 |
 | 24 | 1288 | [Q1288 새로운 불면증 치료법](./swea/D2/Q1288-new-insomnia-treatment) | SWEA | D2 | 1/1 | 2026-08-14 |
 | 23 | 1284 | [Q1284 수도 요금 경쟁](./swea/D2/Q1284-compete-water-fee) | SWEA | D2 | 2/2 | 2026-08-14 |
