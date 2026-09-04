@@ -98,7 +98,7 @@ algorithm-study/
 <!-- PROGRESS:START -->
 | 플랫폼 | 문제 수 | 마지막 업데이트 |
 |---|---|---|
-| SWEA | 33 | 2026-08-26 |
+| SWEA | 34 | 2026-08-27 |
 <!-- PROGRESS:END -->
 
 ## 📌 문제 목록
@@ -108,6 +108,7 @@ algorithm-study/
 <!-- PROBLEM_LIST:START -->
 | No. | 번호 | 문제 | 플랫폼 | 난이도 | 풀이 수 (AC/전체) | 최근 풀이일 |
 |---|---|---|---|---|---|---|
+| 34 | 2005 | [Q2005 파스칼의 삼각형](./swea/D2/Q2005-pascals-triangle) | SWEA | D2 | 1/1 | 2026-08-27 |
 | 33 | 2007 | [Q2007 패턴 마디의 길이](./swea/D2/Q2007-pattern-segment-length) | SWEA | D2 | 1/1 | 2026-08-26 |
 | 32 | 1926 | [Q1926 간단한 369게임](./swea/D2/Q1926-simple-369-game) | SWEA | D2 | 2/2 | 2026-08-25 |
 | 31 | 1989 | [Q1989 초심자의 회문 검사](./swea/D2/Q1989-palindrome-check-of-beginner) | SWEA | D2 | 1/1 | 2026-08-24 |
