@@ -98,7 +98,7 @@ algorithm-study/
 <!-- PROGRESS:START -->
 | 플랫폼 | 문제 수 | 마지막 업데이트 |
 |---|---|---|
-| SWEA | 27 | 2026-08-24 |
+| SWEA | 28 | 2026-08-24 |
 <!-- PROGRESS:END -->
 
 ## 📌 문제 목록
@@ -108,6 +108,7 @@ algorithm-study/
 <!-- PROBLEM_LIST:START -->
 | No. | 번호 | 문제 | 플랫폼 | 난이도 | 풀이 수 (AC/전체) | 최근 풀이일 |
 |---|---|---|---|---|---|---|
+| 28 | 1966 | [Q1966 숫자를 정렬하자](./swea/D2/Q1966-sort-numbers) | SWEA | D2 | 1/1 | 2026-08-24 |
 | 27 | 1959 | [Q1959 두 개의 숫자열](./swea/D2/Q1959-two-numeric-string) | SWEA | D2 | 1/1 | 2026-08-24 |
 | 26 | 1946 | [Q1946 간단한 압축 풀기](./swea/D2/Q1946-simple-release-compression) | SWEA | D2 | 1/1 | 2026-08-24 |
 | 25 | 1940 | [Q1940 가랏! RC카!](./swea/D2/Q1940-go-RC-car) | SWEA | D2 | 2/2 | 2026-08-14 |
