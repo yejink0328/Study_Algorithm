@@ -98,7 +98,7 @@ algorithm-study/
 <!-- PROGRESS:START -->
 | 플랫폼 | 문제 수 | 마지막 업데이트 |
 |---|---|---|
-| SWEA | 38 | 2026-08-31 |
+| SWEA | 38 | 2026-09-02 |
 <!-- PROGRESS:END -->
 
 ## 📌 문제 목록
@@ -108,9 +108,9 @@ algorithm-study/
 <!-- PROBLEM_LIST:START -->
 | No. | 번호 | 문제 | 플랫폼 | 난이도 | 풀이 수 (AC/전체) | 최근 풀이일 |
 |---|---|---|---|---|---|---|
-| 38 | 21425 | [Q21425 +=](./swea/D2/Q21425-+=) | SWEA | D2 | 1/1 | 2026-08-31 |
-| 37 | 1983 | [Q1983 조교의 성적 매기기](./swea/D2/Q1983-assistant-grading) | SWEA | D2 | 1/1 | 2026-08-31 |
-| 36 | 1859 | [Q1859 백만 장자 프로젝트](./swea/D2/Q1859-millionaire-project) | SWEA | D2 | 1/1 | 2026-08-27 |
+| 38 | 1859 | [Q1859 백만 장자 프로젝트](./swea/D2/Q1859-millionaire-project) | SWEA | D2 | 2/2 | 2026-09-02 |
+| 37 | 21425 | [Q21425 +=](./swea/D2/Q21425-+=) | SWEA | D2 | 1/1 | 2026-08-31 |
+| 36 | 1983 | [Q1983 조교의 성적 매기기](./swea/D2/Q1983-assistant-grading) | SWEA | D2 | 1/1 | 2026-08-31 |
 | 35 | 2001 | [Q2001 파리 퇴치](./swea/D2/Q2001-repel-flies) | SWEA | D2 | 1/1 | 2026-08-27 |
 | 34 | 2005 | [Q2005 파스칼의 삼각형](./swea/D2/Q2005-pascals-triangle) | SWEA | D2 | 1/1 | 2026-08-27 |
 | 33 | 2007 | [Q2007 패턴 마디의 길이](./swea/D2/Q2007-pattern-segment-length) | SWEA | D2 | 1/1 | 2026-08-26 |
