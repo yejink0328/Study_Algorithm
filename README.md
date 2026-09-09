@@ -98,7 +98,7 @@ algorithm-study/
 <!-- PROGRESS:START -->
 | 플랫폼 | 문제 수 | 마지막 업데이트 |
 |---|---|---|
-| SWEA | 40 | 2026-09-03 |
+| SWEA | 41 | 2026-09-09 |
 <!-- PROGRESS:END -->
 
 ## 📌 문제 목록
@@ -108,6 +108,7 @@ algorithm-study/
 <!-- PROBLEM_LIST:START -->
 | No. | 번호 | 문제 | 플랫폼 | 난이도 | 풀이 수 (AC/전체) | 최근 풀이일 |
 |---|---|---|---|---|---|---|
+| 41 | 1974 | [Q1974 스도쿠 검증](./swea/D2/Q1974-sudoku-validation) | SWEA | D2 | 1/1 | 2026-09-09 |
 | 40 | 12712 | [Q12712 파리퇴치3 (IM기출)](./swea/D2/Q12712-repel-flies-3) | SWEA | D2 | 1/1 | 2026-09-03 |
 | 39 | 1979 | [Q1979 어디에 단어가 들어갈 수 있을까](./swea/D2/Q1979-position-for-word) | SWEA | D2 | 1/1 | 2026-09-03 |
 | 38 | 1859 | [Q1859 백만 장자 프로젝트](./swea/D2/Q1859-millionaire-project) | SWEA | D2 | 2/2 | 2026-09-02 |
