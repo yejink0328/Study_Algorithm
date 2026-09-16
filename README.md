@@ -98,7 +98,7 @@ algorithm-study/
 <!-- PROGRESS:START -->
 | 플랫폼 | 문제 수 | 마지막 업데이트 |
 |---|---|---|
-| SWEA | 43 | 2026-09-11 |
+| SWEA | 44 | 2026-09-11 |
 <!-- PROGRESS:END -->
 
 ## 📌 문제 목록
@@ -108,6 +108,7 @@ algorithm-study/
 <!-- PROBLEM_LIST:START -->
 | No. | 번호 | 문제 | 플랫폼 | 난이도 | 풀이 수 (AC/전체) | 최근 풀이일 |
 |---|---|---|---|---|---|---|
+| 44 | 26059 | [Q26059 과일 등급 분류](./swea/D2/Q26059-fruits-level-classification) | SWEA | D2 | 1/1 | 2026-09-11 |
 | 43 | 26409 | [Q26409 나눗셈 게임](./swea/D2/Q26409-divide-game) | SWEA | D2 | 1/1 | 2026-09-11 |
 | 42 | 10760 | [Q10760 우주선착륙2](./swea/D2/Q10760-spaceship-landing-2) | SWEA | D2 | 1/1 | 2026-09-11 |
 | 41 | 1974 | [Q1974 스도쿠 검증](./swea/D2/Q1974-sudoku-validation) | SWEA | D2 | 1/1 | 2026-09-09 |
