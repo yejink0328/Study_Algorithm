@@ -98,7 +98,7 @@ algorithm-study/
 <!-- PROGRESS:START -->
 | 플랫폼 | 문제 수 | 마지막 업데이트 |
 |---|---|---|
-| SWEA | 47 | 2026-09-15 |
+| SWEA | 48 | 2026-09-15 |
 <!-- PROGRESS:END -->
 
 ## 📌 문제 목록
@@ -108,6 +108,7 @@ algorithm-study/
 <!-- PROBLEM_LIST:START -->
 | No. | 번호 | 문제 | 플랫폼 | 난이도 | 풀이 수 (AC/전체) | 최근 풀이일 |
 |---|---|---|---|---|---|---|
+| 48 | 1976 | [Q1976 시각 덧셈](./swea/D2/Q1976-adding-times) | SWEA | D2 | 1/1 | 2026-09-15 |
 | 47 | 1948 | [Q1948 날짜 계산기](./swea/D2/Q1948-date-calculator) | SWEA | D2 | 1/1 | 2026-09-15 |
 | 46 | 1954 | [Q1954 달팽이 숫자](./swea/D2/Q1954-snail-number) | SWEA | D2 | 0/1 | 2026-09-14 |
 | 45 | 1961 | [Q1961 숫자 배열 회전](./swea/D2/Q1961-rotating-number-array) | SWEA | D2 | 1/1 | 2026-09-11 |
