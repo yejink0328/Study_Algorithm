@@ -114,7 +114,7 @@ algorithm-study/
 | 플랫폼 | 문제 수 | 마지막 업데이트 |
 |---|---|---|
 | SWEA | 50 | 2026-09-17 |
-| SSAFY | 3 | 2026-09-07 |
+| SSAFY_IM | 3 | 2026-09-07 |
 <!-- PROGRESS:END -->
 
 ## 📌 문제 목록
@@ -134,12 +134,12 @@ algorithm-study/
 | 46 | 26409 | [Q26409 나눗셈 게임](./swea/D2/Q26409-divide-game) | SWEA | D2 | 1/1 | 2026-09-11 |
 | 45 | 10760 | [Q10760 우주선착륙2](./swea/D2/Q10760-spaceship-landing-2) | SWEA | D2 | 1/1 | 2026-09-11 |
 | 44 | 1974 | [Q1974 스도쿠 검증](./swea/D2/Q1974-sudoku-validation) | SWEA | D2 | 1/1 | 2026-09-09 |
-| 43 | nightViewLED | [싸피캠퍼스야경LED (IM기출)](./ssafy_im/nightViewLED) | SSAFY | IM | 1/1 | 2026-09-07 |
-| 42 | ballMoving | [공굴리기 (IM기출)](./ssafy_im/ballMoving) | SSAFY | IM | 1/1 | 2026-09-04 |
+| 43 | nightViewLED | [싸피캠퍼스야경LED (IM기출)](./ssafy_im/nightViewLED) | SSAFY_IM | IM | - | 2026-09-07 |
+| 42 | ballMoving | [공굴리기 (IM기출)](./ssafy_im/ballMoving) | SSAFY_IM | IM | - | 2026-09-04 |
 | 41 | 12712 | [Q12712 파리퇴치3 (IM기출)](./swea/D2/Q12712-repel-flies-3) | SWEA | D2 | 1/1 | 2026-09-03 |
 | 40 | 1979 | [Q1979 어디에 단어가 들어갈 수 있을까](./swea/D2/Q1979-position-for-word) | SWEA | D2 | 1/1 | 2026-09-03 |
-| 39 | blindspotOfGuard | [경비원 사각지대 (IM기출)](./ssafy_im/blindspotOfGuard) | SSAFY | IM | 1/1 | 2026-09-02 |
-| 38 | 1859 | [Q1859 백만 장자 프로젝트](./swea/D2/Q1859-millionaire-project) | SWEA | D2 | 2/2 | 2026-09-02 |
+| 39 | 1859 | [Q1859 백만 장자 프로젝트](./swea/D2/Q1859-millionaire-project) | SWEA | D2 | 2/2 | 2026-09-02 |
+| 38 | blindspotOfGuard | [경비원 사각지대 (IM기출)](./ssafy_im/blindspotOfGuard) | SSAFY_IM | IM | - | 2026-09-02 |
 | 37 | 21425 | [Q21425 +=](./swea/D2/Q21425-+=) | SWEA | D2 | 1/1 | 2026-08-31 |
 | 36 | 1983 | [Q1983 조교의 성적 매기기](./swea/D2/Q1983-assistant-grading) | SWEA | D2 | 1/1 | 2026-08-31 |
 | 35 | 2001 | [Q2001 파리 퇴치](./swea/D2/Q2001-repel-flies) | SWEA | D2 | 1/1 | 2026-08-27 |
