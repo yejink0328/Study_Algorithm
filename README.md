@@ -98,7 +98,7 @@ algorithm-study/
 <!-- PROGRESS:START -->
 | 플랫폼 | 문제 수 | 마지막 업데이트 |
 |---|---|---|
-| SWEA | 49 | 2026-09-16 |
+| SWEA | 50 | 2026-09-17 |
 <!-- PROGRESS:END -->
 
 ## 📌 문제 목록
@@ -108,6 +108,7 @@ algorithm-study/
 <!-- PROBLEM_LIST:START -->
 | No. | 번호 | 문제 | 플랫폼 | 난이도 | 풀이 수 (AC/전체) | 최근 풀이일 |
 |---|---|---|---|---|---|---|
+| 50 | 5642 | [Q5642 [Professional] 합](./swea/D3/Q5642-professional-sum) | SWEA | D3 | 0/1 | 2026-09-17 |
 | 49 | 1928 | [Q1928 Base64 Decoder](./swea/D2/Q1928-base64-decoder) | SWEA | D2 | 1/1 | 2026-09-16 |
 | 48 | 1976 | [Q1976 시각 덧셈](./swea/D2/Q1976-adding-times) | SWEA | D2 | 1/1 | 2026-09-15 |
 | 47 | 1948 | [Q1948 날짜 계산기](./swea/D2/Q1948-date-calculator) | SWEA | D2 | 1/1 | 2026-09-15 |
