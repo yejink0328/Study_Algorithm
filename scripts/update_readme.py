@@ -3,15 +3,33 @@
 '진행 현황' / '문제 목록' 섹션을 자동 갱신한다.
 
 데이터 출처:
-- 문제 목록(어떤 문제가 있는지, 이름, 난이도, 경로): 폴더 구조 + 각 문제 README.md의
-  '# 문제번호 문제이름' 제목 줄과 '- 난이도: ...' 메타데이터 줄
+- 문제 목록(어떤 문제가 있는지, 이름, 플랫폼, 난이도, 경로): 폴더 구조 전체를 스캔하며,
+  각 문제 README.md의 다음 줄들을 읽는다.
+    '# 문제번호 문제이름'      -> 이름
+    '- 플랫폼: <약어>'         -> 플랫폼 약어 (신규 플랫폼도 이 줄만 있으면 자동 인식)
+    '- 난이도: ...'            -> 난이도 표기 (사이트 표기 그대로, 코드에서 매핑하지 않음)
+  '- 플랫폼:' 줄이 없는 README.md(루트 README, 템플릿 등)는 문제로 취급하지 않는다.
 - 풀이 통계(AC/전체, 최근 풀이일): 커밋 메시지
 
 커밋 메시지 형식:
-  [PRG|SWEA|BOJ] Q문제번호 (난이도) [AC|WA|TLE|MLE|RE]
-  [PRG|SWEA|BOJ] Q문제번호_s솔루션번호:접근방식 (난이도) [상태]   <- 반복 풀이
-  [PRG|SWEA|BOJ] Q문제번호 (난이도): 설명                        <- README만 갱신, 집계 제외
+  [약어] Q문제번호 (난이도) [AC|WA|TLE|MLE|RE]
+  [약어] 문제식별자 (난이도) [AC|WA|TLE|MLE|RE]                 <- 번호 대신 이름을 쓰는 플랫폼(SSAFY 등)
+  [약어] Q문제번호_s솔루션번호:접근방식 (난이도) [상태]           <- 반복 풀이
+  [약어] Q문제번호 (난이도): 설명                                <- README만 갱신, 집계 제외
+
+★ 새 플랫폼을 추가하려면
+  1. 문제 폴더의 README.md에 '- 플랫폼: <약어>' 를 적는다.
+  2. 커밋 메시지의 '[ ]' 안에 동일한 약어를 그대로 쓴다.
+  그 외 코드 수정은 필요 없다. (플랫폼 목록이 코드에 하드코딩되어 있지 않음)
+  단, 커밋에서 쓰는 문제 식별자와 폴더 이름의 앞부분(숫자 또는 영문 토큰)은 일치해야
+  풀이 통계(AC/전체)가 정확히 매칭된다. 예: 폴더 'Q1954-snail-number' <-> 커밋 'Q1954',
+  폴더 'ballMoving' <-> 커밋 'ballMoving'.
+
+플랫폼 한글 표시명은 scripts/platform_labels.json 에서 선택적으로 관리한다.
+(약어: 표시명) 형태로 등록하지 않은 약어는 약어 자체를 표시명으로 사용하므로,
+이 파일을 건드리지 않아도 신규 플랫폼은 정상적으로 표에 반영된다.
 """
+import json
 import re
 import subprocess
 from collections import defaultdict
@@ -19,31 +37,60 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 README = ROOT / "README.md"
+LABELS_PATH = Path(__file__).resolve().parent / "platform_labels.json"
 
-PLATFORM_DIR_TO_ABBR = {
-    "programmers": "PRG",
-    "swea": "SWEA",
-    "baekjoon": "BOJ",
-}
-ABBR_TO_KOR = {
-    "PRG": "프로그래머스",
-    "SWEA": "SWEA",
-    "BOJ": "백준",
-}
-PLATFORM_ORDER = ["PRG", "SWEA", "BOJ"]
+# rglob 스캔에서 문제 폴더로 취급하지 않을 최상위 디렉터리
+SKIP_TOP_PARTS = {"_template", "scripts", ".github", ".git"}
 
+PLATFORM_LINE_RE = re.compile(r"^-\s*플랫폼\s*:\s*(.+)$")
 LEVEL_LINE_RE = re.compile(r"^-\s*난이도\s*:\s*(.+)$")
 DATE_VALUE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
-# 폴더명 형식이 여러 버전 섞여 있어도 문제번호만 뽑아낸다:
-#   "1545"                  -> 1545
-#   "Q1545"                 -> 1545
-#   "Q1545-print-backward"  -> 1545
-FOLDER_NUMBER_RE = re.compile(r"^Q?(\d+)(?:[-_].*)?$")
+# 폴더/커밋에 쓰인 문제 식별자에서 앞부분 영숫자 토큰만 뽑아낸다:
+#   "1545"                  -> "1545"
+#   "Q1545"                 -> "1545"           (Q + 숫자만인 경우 숫자만 보존, 기존 표기 호환)
+#   "Q1545-print-backward"  -> "1545"
+#   "ballMoving"            -> "ballMoving"      (번호 없이 이름을 쓰는 플랫폼)
+ID_TOKEN_RE = re.compile(r"^([A-Za-z0-9]+)")
+Q_NUMBER_RE = re.compile(r"^Q(\d+)$")
 
+# 커밋 메시지: [약어] 식별자(_s번호:설명)? (난이도) [상태]?
+# 약어/식별자를 특정 값으로 제한하지 않아 새 플랫폼이 코드 수정 없이 인식된다.
 COMMIT_RE = re.compile(
-    r"^\[(PRG|SWEA|BOJ)\]\s+Q(\d+)(?:_s\d+:[^\s(]+)?\s+\(([^)]+)\)(?:\s+\[(\w+)\])?"
+    r"^\[(\w+)\]\s+([A-Za-z0-9]+)(?:_s\d+(?::[^\s(]+)?)?\s+\(([^)]+)\)(?:\s+\[(\w+)\])?"
 )
+
+
+def load_labels():
+    """플랫폼 약어 -> 한글 표시명 매핑을 선택적으로 로드한다. 파일이 없거나 값이 없으면
+    약어 자체를 표시명으로 사용하므로 신규 플랫폼도 항상 정상 동작한다."""
+    try:
+        return json.loads(LABELS_PATH.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return {}
+
+
+def get_label(abbr, labels):
+    return labels.get(abbr, abbr)
+
+
+def ordered_platforms(present_abbrs, labels):
+    """labels.json에 등록된 순서를 우선하고, 등록되지 않은(=새로) 플랫폼은
+    알파벳 순으로 뒤에 붙인다."""
+    known_order = [a for a in labels.keys() if a in present_abbrs]
+    extra = sorted(a for a in present_abbrs if a not in labels)
+    return known_order + extra
+
+
+def normalize_id(token: str) -> str:
+    m = Q_NUMBER_RE.match(token)
+    return m.group(1) if m else token
+
+
+def extract_folder_id(dirname: str) -> str:
+    m = ID_TOKEN_RE.match(dirname)
+    token = m.group(1) if m else dirname
+    return normalize_id(token)
 
 
 def get_commit_log():
@@ -60,21 +107,25 @@ def get_commit_log():
         m = COMMIT_RE.match(subject.strip())
         if not m:
             continue
-        platform, number, level, status = m.groups()
+        platform, raw_id, level, status = m.groups()
+        platform = platform.upper()
+        number = normalize_id(raw_id)
         entries.append((ts, ts[:10], platform, number, level, status))
     return entries
 
 
-def extract_title_and_level(readme_path: Path):
+def extract_meta(readme_path: Path):
     """
     문제 README.md에서
       '# 문제번호 문제이름'  -> 이름
+      '- 플랫폼: <약어>'     -> 플랫폼 약어 (없으면 문제 README가 아닌 것으로 간주)
       '- 난이도: ...'        -> 난이도 표기 (사이트 표기 그대로, 코드에서 매핑하지 않음)
       '## 풀이 이력' 표의 '날짜' 컬럼 -> 실제 풀이일 (커밋 날짜가 아니라 이 값을 최종 소스로 사용)
     을 읽는다.
     """
     name = "(제목 없음)"
     level = "-"
+    platform = None
     solved_dates = []
     date_col = None  # '풀이 이력' 표에서 '날짜' 컬럼의 인덱스. 찾기 전까지 None
 
@@ -86,6 +137,11 @@ def extract_title_and_level(readme_path: Path):
                 content = stripped[2:].strip()
                 tokens = content.split(maxsplit=1)
                 name = tokens[1] if len(tokens) == 2 and tokens[0].isdigit() else content
+                continue
+
+            m = PLATFORM_LINE_RE.match(stripped)
+            if m:
+                platform = m.group(1).strip().upper()
                 continue
 
             m = LEVEL_LINE_RE.match(stripped)
@@ -106,36 +162,37 @@ def extract_title_and_level(readme_path: Path):
                         solved_dates.append(value)
 
     last_solved_date = max(solved_dates) if solved_dates else None
-    return name, level, last_solved_date
+    return platform, name, level, last_solved_date
 
 
 def scan_problem_folders():
     """
-    programmers/level1/12345/README.md
-    swea/D1/2072/README.md
-    baekjoon/1000/README.md
-    형태를 전부 스캔해서 문제 목록을 만든다.
+    저장소 전체에서 README.md를 재귀적으로 스캔한다. (플랫폼별 폴더명을 코드에 나열하지 않음)
+    '- 플랫폼:' 줄이 있는 README.md만 문제 README로 취급하므로,
+    새 플랫폼 폴더를 어디에 어떤 이름으로 추가하든 자동으로 인식된다.
     """
     problems = []
-    for platform_dir, abbr in PLATFORM_DIR_TO_ABBR.items():
-        base = ROOT / platform_dir
-        if not base.exists():
+    for readme_path in ROOT.rglob("README.md"):
+        if readme_path == README:
             continue
-        for readme_path in base.rglob("README.md"):
-            problem_dir = readme_path.parent
-            m = FOLDER_NUMBER_RE.match(problem_dir.name)
-            if not m:
-                continue
-            number = m.group(1)
-            name, level, solved_date = extract_title_and_level(readme_path)
-            problems.append({
-                "platform": abbr,
-                "number": number,
-                "level": level,
-                "path": problem_dir.relative_to(ROOT).as_posix(),
-                "name": name,
-                "solved_date": solved_date,  # README '풀이 이력' 표에서 읽은 실제 풀이일 (None 가능)
-            })
+        rel_parts = readme_path.relative_to(ROOT).parts
+        if rel_parts[0] in SKIP_TOP_PARTS:
+            continue
+
+        platform, name, level, solved_date = extract_meta(readme_path)
+        if not platform:
+            continue  # '- 플랫폼:' 메타가 없으면 문제 README가 아닌 것으로 간주하고 건너뜀
+
+        problem_dir = readme_path.parent
+        number = extract_folder_id(problem_dir.name)
+        problems.append({
+            "platform": platform,
+            "number": number,
+            "level": level,
+            "path": problem_dir.relative_to(ROOT).as_posix(),
+            "name": name,
+            "solved_date": solved_date,  # README '풀이 이력' 표에서 읽은 실제 풀이일 (None 가능)
+        })
     return problems
 
 
@@ -155,7 +212,7 @@ def build_stats(commit_entries):
     return stats
 
 
-def render_progress_table(problems):
+def render_progress_table(problems, labels):
     """'마지막 업데이트'는 커밋 날짜가 아니라 각 문제 README에 적힌 실제 풀이일(solved_date) 기준"""
     per_platform = defaultdict(lambda: {"count": 0, "last": None})
     for p in problems:
@@ -166,17 +223,15 @@ def render_progress_table(problems):
             info["last"] = d
 
     lines = ["| 플랫폼 | 문제 수 | 마지막 업데이트 |", "|---|---|---|"]
-    for abbr in PLATFORM_ORDER:
-        if abbr not in per_platform:
-            continue
+    for abbr in ordered_platforms(per_platform.keys(), labels):
         info = per_platform[abbr]
-        lines.append(f"| {ABBR_TO_KOR[abbr]} | {info['count']} | {info['last'] or '-'} |")
+        lines.append(f"| {get_label(abbr, labels)} | {info['count']} | {info['last'] or '-'} |")
     if len(lines) == 2:
         lines.append("| - | 0 | - |")
     return "\n".join(lines)
 
 
-def render_problem_list(problems, stats):
+def render_problem_list(problems, stats, labels):
     """
     정렬 기준: README '풀이 이력' 표에 적힌 실제 풀이일(solved_date) — 커밋 시각이 아님.
     No. 컬럼: 최신 문제가 가장 큰 번호(총 문제 수)를 갖고, 가장 오래된 문제가 1이 되도록
@@ -198,7 +253,7 @@ def render_problem_list(problems, stats):
         link = f"[{p['name']}](./{p['path']})"
         ac_total = f"{s['ac']}/{s['total']}" if s["total"] else "-"
         lines.append(
-            f"| {no} | {p['number']} | {link} | {ABBR_TO_KOR[p['platform']]} | "
+            f"| {no} | {p['number']} | {link} | {get_label(p['platform'], labels)} | "
             f"{p['level']} | {ac_total} | {p['solved_date'] or '-'} |"
         )
     if len(lines) == 2:
@@ -215,12 +270,13 @@ def replace_between_markers(content, start_marker, end_marker, new_block):
 
 
 def main():
+    labels = load_labels()
     commit_entries = get_commit_log()
     problems = scan_problem_folders()
     stats = build_stats(commit_entries)
 
-    progress_table = render_progress_table(problems)
-    problem_table = render_problem_list(problems, stats)
+    progress_table = render_progress_table(problems, labels)
+    problem_table = render_problem_list(problems, stats, labels)
 
     content = README.read_text(encoding="utf-8")
     content = replace_between_markers(content, "<!-- PROGRESS:START -->", "<!-- PROGRESS:END -->", progress_table)

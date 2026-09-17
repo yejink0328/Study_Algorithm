@@ -13,6 +13,7 @@
 
 ```
 [약어] Q문제번호_해결방법1:접근방법설명 (난이도) [상태]
+[약어] 문제식별자_해결방법1:접근방법설명 (난이도) [상태]     <- 번호 대신 이름을 쓰는 플랫폼(SSAFY 등)
 ```
 
 **예시**
@@ -21,6 +22,7 @@
 [PRG] Q12345_s1:DFS (Lv1) [WA]
 [PRG] Q12345_s1:DFS (Lv1) [AC]
 [SWEA] Q1954 (D3) [AC]
+[SSAFY] ballMoving (IM) [AC]
 [PRG] Q12345 (Lv1): README 풀이 이력 표 갱신
 ```
 > 마지막 예시처럼 README만 갱신하는 커밋은 `[상태]`를 생략한다.
@@ -28,14 +30,21 @@
 **규칙**
 - 커밋 하나 = 풀이 시도 하나 (여러 문제를 한 커밋에 묶지 않음)
 - 코드 변경 커밋에는 `[상태]` 필수
+- 문제 식별자(`Q문제번호` 또는 이름)는 해당 문제 폴더 이름의 앞부분과 반드시 일치해야 함
+  (예: 폴더 `Q1954-snail-number` ↔ 커밋 `Q1954`, 폴더 `ballMoving` ↔ 커밋 `ballMoving`)
+  — README 자동 집계가 이 값으로 폴더와 커밋을 매칭하기 때문.
 
 ### 플랫폼 약어
+
+새 플랫폼은 아래 표에 등록하지 않아도 자동으로 인식된다 (자세한 내용은 `scripts/update_readme.py` 상단 주석 참고).
+이 표는 사람이 보기 위한 참고용 문서이며, 새 플랫폼을 추가했다면 다른 사람이 알아보기 쉽도록 한 줄 추가해 두는 것을 권장한다.
 
 | 플랫폼 | 약어 | 메인 페이지 |
 |---|---|---|
 | 프로그래머스 | `PRG` | https://programmers.co.kr/ |
 | SWEA | `SWEA` | https://swexpertacademy.com/main/main.do |
 | 백준 | `BOJ` | - |
+| SSAFY (IM 기출) | `SSAFY` | - |
 
 ### 채점 상태 코드
 
@@ -49,10 +58,11 @@
 
 ### 폴더 / 파일 이름 규칙
 
-- 폴더: `Q문제번호` (한글·공백·특수문자 금지)
+- 폴더: `Q문제번호` (한글·공백·특수문자 금지) — 뒤에 `-slug`를 붙여도 됨 (`Q1954-snail-number`)
 - 파일: `Q문제번호.py`
 - 해결방법에 따른 분류: `Q문제번호_s1.py`
 - 실패한 풀이 파일은 삭제하지 않고 보존
+- 번호가 없는 플랫폼(SSAFY 등)은 폴더/파일 모두 `Q` 없이 문제 식별자(영문 이름)를 그대로 사용 (`ballMoving/ballMoving.java`)
 
 </details>
 
@@ -64,7 +74,8 @@
 algorithm-study/
 ├── README.md
 ├── scripts/
-│   └── update_readme.py
+│   ├── update_readme.py
+│   └── platform_labels.json   # 플랫폼 약어 -> 한글 표시명 (선택, 없어도 동작함)
 ├── .github/
 │   └── workflows/
 │       └── update-readme.yml
@@ -87,6 +98,10 @@ algorithm-study/
 │           ├── README.md
 │           └── Q1954_1.py
 ├── baekjoon/
+├── ssafy_im/                  # 번호 없이 이름으로 식별하는 플랫폼 예시
+│   └── ballMoving/
+│       ├── README.md
+│       └── ballMoving.java
 └── _template/
     └── problem_README_template.md
 ```
@@ -99,6 +114,7 @@ algorithm-study/
 | 플랫폼 | 문제 수 | 마지막 업데이트 |
 |---|---|---|
 | SWEA | 50 | 2026-09-17 |
+| SSAFY | 3 | 2026-09-07 |
 <!-- PROGRESS:END -->
 
 ## 📌 문제 목록
@@ -108,18 +124,21 @@ algorithm-study/
 <!-- PROBLEM_LIST:START -->
 | No. | 번호 | 문제 | 플랫폼 | 난이도 | 풀이 수 (AC/전체) | 최근 풀이일 |
 |---|---|---|---|---|---|---|
-| 50 | 5642 | [Q5642 [Professional] 합](./swea/D3/Q5642-professional-sum) | SWEA | D3 | 0/1 | 2026-09-17 |
-| 49 | 1928 | [Q1928 Base64 Decoder](./swea/D2/Q1928-base64-decoder) | SWEA | D2 | 1/1 | 2026-09-16 |
-| 48 | 1976 | [Q1976 시각 덧셈](./swea/D2/Q1976-adding-times) | SWEA | D2 | 1/1 | 2026-09-15 |
-| 47 | 1948 | [Q1948 날짜 계산기](./swea/D2/Q1948-date-calculator) | SWEA | D2 | 1/1 | 2026-09-15 |
-| 46 | 1954 | [Q1954 달팽이 숫자](./swea/D2/Q1954-snail-number) | SWEA | D2 | 0/1 | 2026-09-14 |
-| 45 | 1961 | [Q1961 숫자 배열 회전](./swea/D2/Q1961-rotating-number-array) | SWEA | D2 | 1/1 | 2026-09-11 |
-| 44 | 26059 | [Q26059 과일 등급 분류](./swea/D2/Q26059-fruits-level-classification) | SWEA | D2 | 1/1 | 2026-09-11 |
-| 43 | 26409 | [Q26409 나눗셈 게임](./swea/D2/Q26409-divide-game) | SWEA | D2 | 1/1 | 2026-09-11 |
-| 42 | 10760 | [Q10760 우주선착륙2](./swea/D2/Q10760-spaceship-landing-2) | SWEA | D2 | 1/1 | 2026-09-11 |
-| 41 | 1974 | [Q1974 스도쿠 검증](./swea/D2/Q1974-sudoku-validation) | SWEA | D2 | 1/1 | 2026-09-09 |
-| 40 | 12712 | [Q12712 파리퇴치3 (IM기출)](./swea/D2/Q12712-repel-flies-3) | SWEA | D2 | 1/1 | 2026-09-03 |
-| 39 | 1979 | [Q1979 어디에 단어가 들어갈 수 있을까](./swea/D2/Q1979-position-for-word) | SWEA | D2 | 1/1 | 2026-09-03 |
+| 53 | 5642 | [Q5642 [Professional] 합](./swea/D3/Q5642-professional-sum) | SWEA | D3 | 0/1 | 2026-09-17 |
+| 52 | 1928 | [Q1928 Base64 Decoder](./swea/D2/Q1928-base64-decoder) | SWEA | D2 | 1/1 | 2026-09-16 |
+| 51 | 1976 | [Q1976 시각 덧셈](./swea/D2/Q1976-adding-times) | SWEA | D2 | 1/1 | 2026-09-15 |
+| 50 | 1948 | [Q1948 날짜 계산기](./swea/D2/Q1948-date-calculator) | SWEA | D2 | 1/1 | 2026-09-15 |
+| 49 | 1954 | [Q1954 달팽이 숫자](./swea/D2/Q1954-snail-number) | SWEA | D2 | 0/1 | 2026-09-14 |
+| 48 | 1961 | [Q1961 숫자 배열 회전](./swea/D2/Q1961-rotating-number-array) | SWEA | D2 | 1/1 | 2026-09-11 |
+| 47 | 26059 | [Q26059 과일 등급 분류](./swea/D2/Q26059-fruits-level-classification) | SWEA | D2 | 1/1 | 2026-09-11 |
+| 46 | 26409 | [Q26409 나눗셈 게임](./swea/D2/Q26409-divide-game) | SWEA | D2 | 1/1 | 2026-09-11 |
+| 45 | 10760 | [Q10760 우주선착륙2](./swea/D2/Q10760-spaceship-landing-2) | SWEA | D2 | 1/1 | 2026-09-11 |
+| 44 | 1974 | [Q1974 스도쿠 검증](./swea/D2/Q1974-sudoku-validation) | SWEA | D2 | 1/1 | 2026-09-09 |
+| 43 | nightViewLED | [싸피캠퍼스야경LED (IM기출)](./ssafy_im/nightViewLED) | SSAFY | IM | 1/1 | 2026-09-07 |
+| 42 | ballMoving | [공굴리기 (IM기출)](./ssafy_im/ballMoving) | SSAFY | IM | 1/1 | 2026-09-04 |
+| 41 | 12712 | [Q12712 파리퇴치3 (IM기출)](./swea/D2/Q12712-repel-flies-3) | SWEA | D2 | 1/1 | 2026-09-03 |
+| 40 | 1979 | [Q1979 어디에 단어가 들어갈 수 있을까](./swea/D2/Q1979-position-for-word) | SWEA | D2 | 1/1 | 2026-09-03 |
+| 39 | blindspotOfGuard | [경비원 사각지대 (IM기출)](./ssafy_im/blindspotOfGuard) | SSAFY | IM | 1/1 | 2026-09-02 |
 | 38 | 1859 | [Q1859 백만 장자 프로젝트](./swea/D2/Q1859-millionaire-project) | SWEA | D2 | 2/2 | 2026-09-02 |
 | 37 | 21425 | [Q21425 +=](./swea/D2/Q21425-+=) | SWEA | D2 | 1/1 | 2026-08-31 |
 | 36 | 1983 | [Q1983 조교의 성적 매기기](./swea/D2/Q1983-assistant-grading) | SWEA | D2 | 1/1 | 2026-08-31 |
