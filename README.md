@@ -113,7 +113,7 @@ algorithm-study/
 <!-- PROGRESS:START -->
 | 플랫폼 | 문제 수 | 마지막 업데이트 |
 |---|---|---|
-| SWEA | 50 | 2026-09-17 |
+| SWEA | 51 | 2026-09-17 |
 | SSAFY | 3 | 2026-09-07 |
 <!-- PROGRESS:END -->
 
@@ -124,6 +124,7 @@ algorithm-study/
 <!-- PROBLEM_LIST:START -->
 | No. | 번호 | 문제 | 플랫폼 | 난이도 | 풀이 수 (AC/전체) | 최근 풀이일 |
 |---|---|---|---|---|---|---|
+| 54 | 1209 | [Q1209 [S/W 문제해결 기본] 2일차 - Sum](./swea/D3/Q1209-basic-sum) | SWEA | D3 | 1/1 | 2026-09-17 |
 | 53 | 5642 | [Q5642 [Professional] 합](./swea/D3/Q5642-professional-sum) | SWEA | D3 | 0/1 | 2026-09-17 |
 | 52 | 1928 | [Q1928 Base64 Decoder](./swea/D2/Q1928-base64-decoder) | SWEA | D2 | 1/1 | 2026-09-16 |
 | 51 | 1976 | [Q1976 시각 덧셈](./swea/D2/Q1976-adding-times) | SWEA | D2 | 1/1 | 2026-09-15 |
