@@ -44,7 +44,7 @@
 | 프로그래머스 | `PRG` | https://programmers.co.kr/ |
 | SWEA | `SWEA` | https://swexpertacademy.com/main/main.do |
 | 백준 | `BOJ` | - |
-| SSAFY (IM 기출) | `SSAFY` | - |
+| SSAFY | `SSAFY` | https://app.notion.com/p/0df78b61a9c78324b2060138855b48d1 |
 
 ### 채점 상태 코드
 
