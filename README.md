@@ -113,7 +113,7 @@ algorithm-study/
 <!-- PROGRESS:START -->
 | 플랫폼 | 문제 수 | 마지막 업데이트 |
 |---|---|---|
-| SWEA | 54 | 2026-09-29 |
+| SWEA | 54 | 2026-09-30 |
 | SSAFY | 3 | 2026-09-07 |
 <!-- PROGRESS:END -->
 
@@ -124,7 +124,7 @@ algorithm-study/
 <!-- PROBLEM_LIST:START -->
 | No. | 번호 | 문제 | 플랫폼 | 난이도 | 풀이 수 (AC/전체) | 최근 풀이일 |
 |---|---|---|---|---|---|---|
-| 57 | 3499 | [Q3499 퍼펙트 셔플](./swea/D3/Q3499-perfect-shuffle) | SWEA | D3 | 1/1 | 2026-09-29 |
+| 57 | 3499 | [Q3499 퍼펙트 셔플](./swea/D3/Q3499-perfect-shuffle) | SWEA | D3 | 2/2 | 2026-09-30 |
 | 56 | 1225 | [Q1225 암호생성기](./swea/D3/Q1225-password-generator) | SWEA | D3 | 1/1 | 2026-09-28 |
 | 55 | 7102 | [Q7102 준홍이의 카드놀이](./swea/D3/Q7102-cards-play) | SWEA | D3 | 1/1 | 2026-09-28 |
 | 54 | 1209 | [Q1209 [S/W 문제해결 기본] 2일차 - Sum](./swea/D3/Q1209-basic-sum) | SWEA | D3 | 1/1 | 2026-09-17 |
