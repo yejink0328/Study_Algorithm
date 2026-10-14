@@ -113,7 +113,7 @@ algorithm-study/
 <!-- PROGRESS:START -->
 | 플랫폼 | 문제 수 | 마지막 업데이트 |
 |---|---|---|
-| SWEA | 56 | 2026-10-13 |
+| SWEA | 56 | 2026-10-14 |
 | SSAFY | 3 | 2026-09-07 |
 <!-- PROGRESS:END -->
 
@@ -124,7 +124,7 @@ algorithm-study/
 <!-- PROBLEM_LIST:START -->
 | No. | 번호 | 문제 | 플랫폼 | 난이도 | 풀이 수 (AC/전체) | 최근 풀이일 |
 |---|---|---|---|---|---|---|
-| 59 | 5215 | [Q5215 햄버거 다이어트](./swea/D3/Q5215-hamburger-diet) | SWEA | D3 | 1/1 | 2026-10-13 |
+| 59 | 5215 | [Q5215 햄버거 다이어트](./swea/D3/Q5215-hamburger-diet) | SWEA | D3 | 2/2 | 2026-10-14 |
 | 58 | 1216 | [Q1216 [S/W 문제해결 기본] 3일차 - 회문2](./swea/D3/Q1216-palindrome-2) | SWEA | D3 | 1/1 | 2026-10-01 |
 | 57 | 3499 | [Q3499 퍼펙트 셔플](./swea/D3/Q3499-perfect-shuffle) | SWEA | D3 | 2/2 | 2026-09-30 |
 | 56 | 1225 | [Q1225 암호생성기](./swea/D3/Q1225-password-generator) | SWEA | D3 | 1/1 | 2026-09-28 |
